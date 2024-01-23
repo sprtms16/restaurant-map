@@ -1437,7 +1437,6 @@ export default {
   },
   methods: {
     initMap() {
-      const container = document.getElementById("map");
       this.geocoder = new kakao.maps.services.Geocoder();
       navigator.geolocation.getCurrentPosition(
         (position) => {
@@ -1451,6 +1450,7 @@ export default {
 
           //지도 객체를 등록합니다.
           //지도 객체는 반응형 관리 대상이 아니므로 initMap에서 선언합니다.
+          const container = document.getElementById("map");
           this.map = new kakao.maps.Map(container, options);
           const markerPosition = new kakao.maps.LatLng(
             position.coords.latitude,
@@ -1472,12 +1472,38 @@ export default {
 
           this.addMarker();
         },
-        () => {},
+        () => {
+          console.log("error callback");
+          // 주소-좌표 변환 객체를 생성합니다
+          const geocoder = new kakao.maps.services.Geocoder();
+          // 주소로 좌표를 검색합니다
+          geocoder.addressSearch(
+            "서울특별시 용산구 한강대로 405",
+            this.addressSearchResult
+          );
+        },
         {
           maximumAge: 0,
           enableHighAccuracy: true,
         }
       );
+    },
+    addressSearchResult(result, status) {
+      // 정상적으로 검색이 완료됐으면
+      if (status === kakao.maps.services.Status.OK) {
+        const markerPosition = new kakao.maps.LatLng(result[0].y, result[0].x);
+        const options = {
+          center: markerPosition,
+          level: 10,
+        };
+        //지도 객체를 등록합니다.
+        //지도 객체는 반응형 관리 대상이 아니므로 initMap에서 선언합니다.
+        const container = document.getElementById("map");
+        this.map = new kakao.maps.Map(container, options);
+        this.addMarker();
+      } else {
+        console.log(status);
+      }
     },
     async addressSearch(address) {
       return new Promise((resolve, reject) => {
