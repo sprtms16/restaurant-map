@@ -1517,38 +1517,28 @@ export default {
             position.lat,
             position.lng
           );
-          const marker = new kakao.maps.Marker({
+          let img = document.createElement("img");
+          img.className = "marker";
+          img.src = "https://t1.daumcdn.net/mapjsapi/images/2x/marker.png";
+          const overlay = new kakao.maps.CustomOverlay({
+            clickable: true,
+            content: img,
             position: markerPosition,
+            map: map,
+            yAnchor: 1,
           });
           const infowindow = new kakao.maps.InfoWindow({
             position: markerPosition,
             content: `<div>상호명: ${position.storeName}</div><div>메뉴: ${position.menu}</div><div>추천 메뉴: ${position.popMenu}</div><div>작성자: ${position.writer}</div><div>작성자 리뷰: ${position.review}</div><div>방문자리뷰: ${position.visitorReview}</div>`,
           });
-          kakao.maps.event.addListener(
-            marker,
-            "mouseover",
-            makeOverListener(map, marker, infowindow)
-          );
-          kakao.maps.event.addListener(
-            marker,
-            "mouseout",
-            makeOutListener(infowindow)
-          );
-          // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
-          function makeOverListener(map, marker, infowindow) {
-            return function () {
-              infowindow.open(map, marker);
-            };
-          }
+          img.addEventListener("touchstart", () => {
+            infowindow.open(map);
+          });
 
-          // 인포윈도우를 닫는 클로저를 만드는 함수입니다
-          function makeOutListener(infowindow) {
-            return function () {
-              infowindow.close();
-            };
-          }
-
-          return marker;
+          img.addEventListener("touchend", () => {
+            infowindow.close();
+          });
+          return overlay;
         });
         // 클러스터러에 마커들을 추가합니다
         const clusterer = new kakao.maps.MarkerClusterer({
@@ -1569,5 +1559,10 @@ export default {
 #map {
   width: 100vw;
   height: calc(100vh - 64px);
+}
+#map/deep/ .marker {
+  display: block;
+  width: 29px;
+  height: 42px;
 }
 </style>
