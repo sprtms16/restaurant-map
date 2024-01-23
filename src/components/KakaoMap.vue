@@ -4,6 +4,7 @@
 
 <script>
 import { toRaw } from "vue";
+
 export default {
   name: "KakaoMap",
   data() {
@@ -27,35 +28,78 @@ export default {
   methods: {
     initMap() {
       const container = document.getElementById("map");
-      navigator.geolocation.getCurrentPosition((position) => {
-        const options = {
-          center: new kakao.maps.LatLng(
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const options = {
+            center: new kakao.maps.LatLng(
+              position.coords.latitude,
+              position.coords.longitude
+            ),
+            level: 5,
+          };
+          //지도 객체를 등록합니다.
+          //지도 객체는 반응형 관리 대상이 아니므로 initMap에서 선언합니다.
+          this.map = new kakao.maps.Map(container, options);
+          const markerPosition = new kakao.maps.LatLng(
             position.coords.latitude,
             position.coords.longitude
-          ),
-          level: 5,
-        };
-        //지도 객체를 등록합니다.
-        //지도 객체는 반응형 관리 대상이 아니므로 initMap에서 선언합니다.
-        this.map = new kakao.maps.Map(container, options);
-        const markerPosition = new kakao.maps.LatLng(
-          position.coords.latitude,
-          position.coords.longitude
-        );
-        const iwContent = "Hello World!";
-        // 커스텀 오버레이를 생성합니다
-        const marker = new kakao.maps.Marker({
-          position: markerPosition,
-        });
-        marker.setMap(this.map);
-        var infowindow = new kakao.maps.InfoWindow({
-          position: markerPosition,
-          content: iwContent,
-        });
+          );
+          const iwContent = "내 위치";
+          // 커스텀 오버레이를 생성합니다
+          const marker = new kakao.maps.Marker({
+            position: markerPosition,
+          });
+          marker.setMap(this.map);
+          const infowindow = new kakao.maps.InfoWindow({
+            position: markerPosition,
+            content: iwContent,
+          });
 
-        // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-        infowindow.open(this.map, marker);
-      });
+          // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+          infowindow.open(this.map, marker);
+        },
+        () => {
+          // 주소-좌표 변환 객체를 생성합니다
+          const geocoder = new kakao.maps.services.Geocoder();
+          // 주소로 좌표를 검색합니다
+          geocoder.addressSearch(
+            "서울특별시 중구 세종대로 110",
+            function (result, status) {
+              // 정상적으로 검색이 완료됐으면
+              if (status === kakao.maps.services.Status.OK) {
+                const markerPosition = new kakao.maps.LatLng(
+                  result[0].y,
+                  result[0].x
+                );
+
+                const options = {
+                  center: markerPosition,
+                  level: 5,
+                };
+                //지도 객체를 등록합니다.
+                //지도 객체는 반응형 관리 대상이 아니므로 initMap에서 선언합니다.
+                this.map = new kakao.maps.Map(container, options);
+                const iwContent = "내 위치를 알 수 없습니다.ㅠㅠ";
+                // 커스텀 오버레이를 생성합니다
+                const marker = new kakao.maps.Marker({
+                  position: markerPosition,
+                });
+                marker.setMap(this.map);
+                const infowindow = new kakao.maps.InfoWindow({
+                  position: markerPosition,
+                  content: iwContent,
+                });
+                // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
+                infowindow.open(this.map, marker);
+              }
+            }
+          );
+        },
+        {
+          maximumAge: 0,
+          enableHighAccuracy: true,
+        }
+      );
     },
     changeSize() {
       toRaw(this.map).relayout();
@@ -93,7 +137,7 @@ export default {
         return;
       }
 
-      var iwContent = '<div style="padding:5px;">Hello World!</div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+      const iwContent = `<div style="padding:5px;">Hello World!</div>`, // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
         iwPosition = new kakao.maps.LatLng(33.450701, 126.570667), //인포윈도우 표시 위치입니다
         iwRemoveable = true; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
 
@@ -110,50 +154,9 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 #map {
   width: 100vw;
   height: calc(100vh - 64px);
-}
-
-.button-group {
-  margin: 10px 0px;
-}
-
-button {
-  margin: 0 3px;
-}
-#map/deep/ .label {
-  margin-bottom: 96px;
-}
-#map/deep/ .label * {
-  display: inline-block;
-  vertical-align: top;
-}
-#map/deep/ .label .left {
-  background: url("https://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_l.png")
-    no-repeat;
-  display: inline-block;
-  height: 24px;
-  overflow: hidden;
-  vertical-align: top;
-  width: 7px;
-}
-#map/deep/ .label .center {
-  background: url(https://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_bg.png)
-    repeat-x;
-  display: inline-block;
-  height: 24px;
-  font-size: 12px;
-  line-height: 24px;
-}
-#map/deep/ .label .right {
-  background: url("https://t1.daumcdn.net/localimg/localimages/07/2011/map/storeview/tip_r.png") -1px
-    0 no-repeat;
-  display: inline-block;
-  height: 24px;
-  overflow: hidden;
-  width: 6px;
 }
 </style>
