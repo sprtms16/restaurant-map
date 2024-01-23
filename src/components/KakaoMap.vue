@@ -3,6 +3,7 @@
 </template>
 
 <script>
+import { toRaw } from "vue";
 export default {
   name: "KakaoMap",
   data() {
@@ -823,24 +824,6 @@ export default {
           visitorReview: null,
         },
         {
-          storeName: "경기떡집",
-          address: "https://www.kricecake.com/",
-          menu: "한식",
-          popMenu: "이티떡",
-          writer: "눈부심",
-          review: "",
-          visitorReview: null,
-        },
-        {
-          storeName: "백년화편",
-          address: "https://www.100yearshop.co.kr/",
-          menu: "한식",
-          popMenu: "밥알흑임자",
-          writer: "눈부심",
-          review: "",
-          visitorReview: null,
-        },
-        {
           storeName: "조연탄",
           address: "서울 강서구 곰달래로60길 29",
           menu: "한식",
@@ -1058,114 +1041,6 @@ export default {
           visitorReview: null,
         },
         {
-          storeName: "수변최고돼지국밥",
-          address: "",
-          menu: "한식",
-          popMenu: "돼지국밥",
-          writer: "쥬빙",
-          review: "미쳤음걍",
-          visitorReview: null,
-        },
-        {
-          storeName: "합천돼지국밥",
-          address: "",
-          menu: "한식",
-          popMenu: "돼지국밥",
-          writer: "쥬빙",
-          review: "진짜도랐습니다",
-          visitorReview: null,
-        },
-        {
-          storeName: "이재모피자",
-          address: "",
-          menu: "양식",
-          popMenu: "피자",
-          writer: "쥬빙",
-          review: "미친색기",
-          visitorReview: null,
-        },
-        {
-          storeName: "세정",
-          address: "",
-          menu: "술집..",
-          popMenu: "한치물회",
-          writer: "쥬빙",
-          review: "이거진짜미친놈",
-          visitorReview: null,
-        },
-        {
-          storeName: "고향김치전골",
-          address: "",
-          menu: "한식",
-          popMenu: "김치전골",
-          writer: "쥬빙",
-          review: "진자미친놈",
-          visitorReview: null,
-        },
-        {
-          storeName: "영진돼지국밥",
-          address: "",
-          menu: "한식",
-          popMenu: "돼지국밥",
-          writer: "쥬빙",
-          review: "미친놈....",
-          visitorReview: null,
-        },
-        {
-          storeName: "포항회관",
-          address: "연산동..",
-          menu: "한식",
-          popMenu: "물회",
-          writer: "쥬빙",
-          review: "와..진짜미친놈",
-          visitorReview: null,
-        },
-        {
-          storeName: "제일솥뚜껑",
-          address: "",
-          menu: "한식",
-          popMenu: "대구뽈찜",
-          writer: "쥬빙",
-          review: "와..걍 도랐어요",
-          visitorReview: null,
-        },
-        {
-          storeName: "얼큰이손칼국수",
-          address: "기장",
-          menu: "한식",
-          popMenu: "칼국수+샤브샤브",
-          writer: "쥬빙",
-          review: "국물미친놈",
-          visitorReview: null,
-        },
-        {
-          storeName: "오소리순대",
-          address: "연산동..",
-          menu: "한식",
-          popMenu: "순대,순대국밥",
-          writer: "쥬빙",
-          review: "와..........",
-          visitorReview: null,
-        },
-        {
-          storeName: "해성막창",
-          address: "해운대",
-          menu: "한식",
-          popMenu: "대창",
-          writer: "쥬빙",
-          review: "여기모르면 바보",
-          visitorReview: null,
-        },
-        {
-          storeName: "일미아구찜",
-          address: "기장",
-          menu: "한식",
-          popMenu: "아구찜",
-          writer: "쥬빙",
-          review: "아니진짜 미쳤다니까",
-          visitorReview: null,
-        },
-        {
           storeName: "울통치킨",
           address: "양산남부시장",
           menu: "한식..?",
@@ -1173,24 +1048,6 @@ export default {
           writer: "쥬빙",
           review: "진짜 인생최고 치킨집",
           visitorReview: "",
-        },
-        {
-          storeName: "청진동감자탕",
-          address: "서면",
-          menu: "한식",
-          popMenu: "더덕삼겹살",
-          writer: "쥬빙",
-          review: "와. 미친놈그자체",
-          visitorReview: null,
-        },
-        {
-          storeName: "가야포차",
-          address: "개금",
-          menu: "한식",
-          popMenu: "수구레국밥",
-          writer: "쥬빙",
-          review: "미친섹기,,,진짜 국물미친놈",
-          visitorReview: null,
         },
         {
           storeName: "정원한우갈비 본점",
@@ -1202,75 +1059,12 @@ export default {
           visitorReview: null,
         },
         {
-          storeName: "범일빈대떡",
-          address: "동구",
-          menu: "한식",
-          popMenu: "빈대떡",
-          writer: "쥬빙",
-          review: "와. 소주4병짜리",
-          visitorReview: null,
-        },
-        {
-          storeName: "웅천집",
-          address: "금곡동",
-          menu: "한식",
-          popMenu: "향어회",
-          writer: "쥬빙",
-          review: "가게평균연령 64세",
-          visitorReview: null,
-        },
-        {
-          storeName: "우리포차",
-          address: "",
-          menu: "한식",
-          popMenu: "대방어",
-          writer: "쥬빙",
-          review: "방어 1티어 소주5병",
-          visitorReview: null,
-        },
-        {
           storeName: "윤소인남산고단백장어죽집",
           address: "대구 중구 동성로 19-11",
           menu: "한식",
           popMenu: "국밥",
           writer: "안뮈",
           review: "가성비 지리는 국밥이 있음",
-          visitorReview: null,
-        },
-        {
-          storeName: "한강껍데기",
-          address: "",
-          menu: "한식",
-          popMenu: "목살,술밥",
-          writer: "쥬빙",
-          review: "술밥에 소주2병 뚝딱가능",
-          visitorReview: null,
-        },
-        {
-          storeName: "스지고집",
-          address: "",
-          menu: "한식",
-          popMenu: "불스지",
-          writer: "쥬빙",
-          review: "개삽맵찔이는 안됨",
-          visitorReview: null,
-        },
-        {
-          storeName: "거대갈비",
-          address: "",
-          menu: "한식",
-          popMenu: "소고기",
-          writer: "쥬빙",
-          review: "부자놀이하고싶을때 가는곳",
-          visitorReview: null,
-        },
-        {
-          storeName: "지수네감자탕",
-          address: "",
-          menu: "한식",
-          popMenu: "콩비지감자탕",
-          writer: "쥬빙",
-          review: "여기안가본 안양시민이랑 말안섞음",
           visitorReview: null,
         },
         {
@@ -1626,8 +1420,6 @@ export default {
           visitorReview: null,
         },
       ],
-      infowindow: null,
-      clusterer: null,
       geocoder: null,
     };
   },
@@ -1654,7 +1446,7 @@ export default {
               position.coords.latitude,
               position.coords.longitude
             ),
-            level: 5,
+            level: 10,
           };
 
           //지도 객체를 등록합니다.
@@ -1669,7 +1461,7 @@ export default {
           const marker = new kakao.maps.Marker({
             position: markerPosition,
           });
-          marker.setMap(this.map);
+          marker.setMap(toRaw(this.map));
           const infowindow = new kakao.maps.InfoWindow({
             position: markerPosition,
             content: iwContent,
@@ -1677,56 +1469,10 @@ export default {
 
           // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
           infowindow.open(this.map, marker);
-          this.clusterer = new kakao.maps.MarkerClusterer({
-            map: this.map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
-            averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-            minLevel: 10, // 클러스터 할 최소 지도 레벨
-          });
+
           this.addMarker();
         },
-        () => {
-          // 주소-좌표 변환 객체를 생성합니다
-          const geocoder = new kakao.maps.services.Geocoder();
-          // 주소로 좌표를 검색합니다
-          geocoder.addressSearch(
-            "서울특별시 중구 세종대로 110",
-            function (result, status) {
-              // 정상적으로 검색이 완료됐으면
-              if (status === kakao.maps.services.Status.OK) {
-                const markerPosition = new kakao.maps.LatLng(
-                  result[0].y,
-                  result[0].x
-                );
-
-                const options = {
-                  center: markerPosition,
-                  level: 5,
-                };
-                //지도 객체를 등록합니다.
-                //지도 객체는 반응형 관리 대상이 아니므로 initMap에서 선언합니다.
-                this.map = new kakao.maps.Map(container, options);
-                const iwContent = "내 위치를 알 수 없습니다.ㅠㅠ";
-                // 커스텀 오버레이를 생성합니다
-                const marker = new kakao.maps.Marker({
-                  position: markerPosition,
-                });
-                marker.setMap(this.map);
-                const infowindow = new kakao.maps.InfoWindow({
-                  position: markerPosition,
-                  content: iwContent,
-                });
-                // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-                infowindow.open(this.map, marker);
-                this.clusterer = new kakao.maps.MarkerClusterer({
-                  map: this.map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
-                  averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
-                  minLevel: 5, // 클러스터 할 최소 지도 레벨
-                });
-                this.addMarker();
-              }
-            }
-          );
-        },
+        () => {},
         {
           maximumAge: 0,
           enableHighAccuracy: true,
@@ -1737,7 +1483,11 @@ export default {
       return new Promise((resolve, reject) => {
         this.geocoder.addressSearch(address, function (result, status) {
           if (status === kakao.maps.services.Status.OK) {
-            resolve({ lat: result[0].y, lng: result[0].x });
+            resolve({
+              lat: result[0].y,
+              lng: result[0].x,
+              address: result[0].address_name,
+            });
           } else {
             reject(status);
           }
@@ -1747,6 +1497,7 @@ export default {
     async addMarker() {
       try {
         const positions = [];
+        const map = toRaw(this.map);
         for (const address of this.addressInfo) {
           try {
             if (address.address) {
@@ -1761,7 +1512,7 @@ export default {
           }
         }
 
-        var markers = positions.map(function (position) {
+        const markers = positions.map(function (position) {
           const markerPosition = new kakao.maps.LatLng(
             position.lat,
             position.lng
@@ -1769,17 +1520,43 @@ export default {
           const marker = new kakao.maps.Marker({
             position: markerPosition,
           });
-          // const infowindow = new kakao.maps.InfoWindow({
-          //   position: markerPosition,
-          //   content: `<div>상호명: ${position.storeName}</div><div>메뉴: ${position.menu}</div><div>추천 메뉴: ${position.popMenu}</div><div>작성자: ${position.writer}</div><div>작성자 리뷰: ${position.review}</div><div>방문자리뷰: ${position.visitorReview}</div>`,
-          // });
-          // // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
-          // infowindow.open(map, marker);
+          const infowindow = new kakao.maps.InfoWindow({
+            position: markerPosition,
+            content: `<div>상호명: ${position.storeName}</div><div>메뉴: ${position.menu}</div><div>추천 메뉴: ${position.popMenu}</div><div>작성자: ${position.writer}</div><div>작성자 리뷰: ${position.review}</div><div>방문자리뷰: ${position.visitorReview}</div>`,
+          });
+          kakao.maps.event.addListener(
+            marker,
+            "mouseover",
+            makeOverListener(map, marker, infowindow)
+          );
+          kakao.maps.event.addListener(
+            marker,
+            "mouseout",
+            makeOutListener(infowindow)
+          );
+          // 인포윈도우를 표시하는 클로저를 만드는 함수입니다
+          function makeOverListener(map, marker, infowindow) {
+            return function () {
+              infowindow.open(map, marker);
+            };
+          }
+
+          // 인포윈도우를 닫는 클로저를 만드는 함수입니다
+          function makeOutListener(infowindow) {
+            return function () {
+              infowindow.close();
+            };
+          }
+
           return marker;
         });
-
         // 클러스터러에 마커들을 추가합니다
-        this.clusterer.addMarkers(markers);
+        const clusterer = new kakao.maps.MarkerClusterer({
+          map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+          averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+          minLevel: 10, // 클러스터 할 최소 지도 레벨
+        });
+        await clusterer.addMarkers(markers);
       } catch (e) {
         console.log(e);
       }
