@@ -1,18 +1,25 @@
 <template>
-  <kakao-map />
+  <v-app>
+    <v-app-bar :elevation="13" rounded>
+      <template v-slot:append>
+        <v-btn icon="mdi-refresh" @click="$router.go(0)"></v-btn>
+      </template>
+    </v-app-bar>
+    <v-main>
+      <kakao-map />
+    </v-main>
+  </v-app>
 </template>
 
-<script setup>
+<script>
 import KakaoMap from "@/components/KakaoMap.vue";
-</script>
 
-<style>
-@import "@/assets/css/reset.css";
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-</style>
+export default {
+  name: "App",
+  components: { KakaoMap },
+
+  data: () => ({
+    //
+  }),
+};
+</script>

@@ -1,7 +1,5 @@
 <template>
-  <div>
-    <div id="map"></div>
-  </div>
+  <div id="map"></div>
 </template>
 
 <script>
@@ -116,7 +114,7 @@ export default {
 <style scoped>
 #map {
   width: 100vw;
-  height: 90vh;
+  height: calc(100vh - 64px);
 }
 
 .button-group {
