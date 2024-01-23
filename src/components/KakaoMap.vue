@@ -1534,8 +1534,15 @@ export default {
           img.addEventListener("touchstart", () => {
             infowindow.open(map);
           });
+          img.addEventListener("mouseover", () => {
+            infowindow.open(map);
+          });
 
           img.addEventListener("touchend", () => {
+            infowindow.close();
+          });
+
+          img.addEventListener("mouseout", () => {
             infowindow.close();
           });
           return overlay;
