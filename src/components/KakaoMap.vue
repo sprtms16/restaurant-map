@@ -151,7 +151,7 @@ export default {
                   window["selectedAddress"] = info.address;
                   window["timeout"] = setTimeout(() => {
                     delete window["selectedAddress"];
-                  }, 3000);
+                  }, 500);
                 }
               });
               img.addEventListener("mouseover", () => {
@@ -171,7 +171,7 @@ export default {
                   window["selectedAddress"] = info.address;
                   window["timeout"] = setTimeout(() => {
                     delete window["selectedAddress"];
-                  }, 3000);
+                  }, 500);
                 }
               });
 
