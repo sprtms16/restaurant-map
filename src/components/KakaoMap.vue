@@ -145,6 +145,7 @@ export default {
                     .then(() => {
                       alert("주소가 복사되었습니다!");
                       delete window["selectedAddress"];
+                      infowindow.setMap(null);
                     });
                 } else {
                   window["selectedAddress"] = info.address;
@@ -164,6 +165,7 @@ export default {
                     .then(() => {
                       alert("주소가 복사되었습니다!");
                       delete window["selectedAddress"];
+                      infowindow.setMap(null);
                     });
                 } else {
                   window["selectedAddress"] = info.address;
@@ -205,7 +207,7 @@ export default {
   height: calc(100vh - 64px);
 }
 
-#map /deep/ .marker {
+#map:deep(.marker) {
   display: block;
   width: 29px;
   height: 42px;

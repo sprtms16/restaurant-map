@@ -2,9 +2,7 @@
   <v-app>
     <v-app-bar :elevation="13" rounded>
       <template #prepend>
-        <v-app-bar-title
-          >마커를 더블클릭시 주소가 클립보드에 복사됩니다.</v-app-bar-title
-        >
+        <h5>마커를 더블클릭시 주소가 클립보드에 복사됩니다.</h5>
       </template>
       <template v-slot:append>
         <v-btn icon="mdi-refresh" @click="refresh()"></v-btn>
