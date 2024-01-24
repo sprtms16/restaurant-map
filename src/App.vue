@@ -7,7 +7,7 @@
         >
       </template>
       <template v-slot:append>
-        <v-btn icon="mdi-refresh" @click="$router.go(0)"></v-btn>
+        <v-btn icon="mdi-refresh" @click="refresh()"></v-btn>
       </template>
     </v-app-bar>
     <v-main>
@@ -18,13 +18,22 @@
 
 <script>
 import KakaoMap from "@/components/KakaoMap.vue";
+import { mapActions, mapMutations } from "vuex";
 
 export default {
   name: "App",
   components: { KakaoMap },
-
   data: () => ({
     //
   }),
+  methods: {
+    ...mapActions(["fetchRestaurantInfo"]),
+    ...mapMutations(["initInfo"]),
+    async refresh() {
+      await this.initInfo();
+      await this.fetchRestaurantInfo();
+      await this.$router.go(0);
+    },
+  },
 };
 </script>

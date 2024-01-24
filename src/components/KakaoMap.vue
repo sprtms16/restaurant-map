@@ -91,14 +91,13 @@ export default {
 
           // 마커 위에 인포윈도우를 표시합니다. 두번째 파라미터인 marker를 넣어주지 않으면 지도 위에 표시됩니다
           infowindow.open(this.map, marker);
-          this.addMarker();
         })
         .catch(() => {
           alert(
             "위치정보를 가져올 수 없습니다. 인터넷이나 위치정보를 확인 해 주시기 바랍니다."
           );
         })
-        .then(() => {});
+        .then(this.addMarker);
     },
     async addressSearch(address) {
       return new Promise((resolve, reject) => {

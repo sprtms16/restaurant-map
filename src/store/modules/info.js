@@ -22,6 +22,9 @@ const mutations = {
     state.info = tempInfoList;
     return state.info;
   },
+  initInfo(state) {
+    state.info = [];
+  },
 };
 
 // actions
